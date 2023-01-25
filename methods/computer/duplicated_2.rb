@@ -1,4 +1,4 @@
-class Computer
+class Computer < BasicObject
   def initialize(computer_id, data_source)
     @id = computer_id
     @data_source = data_source
@@ -13,9 +13,9 @@ class Computer
     result
   end
 
-  def respond_to_missing?(method, include_private = false)
-    @data_source.respond_to?("get_#{method}_info") || super
-  end
+  # def respond_to_missing?(method, include_private = false)
+  #   @data_source.respond_to?("get_#{method}_info") || super
+  # end
 end
 
 class DS
@@ -48,5 +48,8 @@ ds = DS.new
 
 computer = Computer.new(1, ds)
 puts computer.mouse
-puts computer.respond_to?(:mouse)
-puts computer.respond_to?(:explode)
+# puts computer.respond_to?(:mouse)
+# puts computer.respond_to?(:explode)
+# puts computer.respond_to?(:display)
+puts computer.display
+puts Computer.instance_methods.grep /^d/
